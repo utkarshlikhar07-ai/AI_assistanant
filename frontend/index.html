@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS AI — Just A Rather Very Intelligent System</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/animations.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Sidebar navigation -->
+  <aside id="sidebar">
+    <div class="logo-section">
+      <div class="jarvis-logo">J</div>
+      <div class="logo-text">
+        <span class="logo-title">JARVIS AI</span>
+        <span class="logo-subtitle">Just A Rather Very Intelligent System</span>
+      </div>
+    </div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#" class="nav-link active" data-section="dashboard"><i class="nav-icon">⊞</i>Dashboard</a></li>
+        <li><a href="#" class="nav-link" data-section="chat"><i class="nav-icon">💬</i>AI Assistant</a></li>
+        <li class="nav-group-label">AI Algorithms Lab</li>
+        <li><a href="#" class="nav-link" data-section="search"><i class="nav-icon">🔍</i>Search Algorithms</a></li>
+        <li><a href="#" class="nav-link" data-section="puzzles"><i class="nav-icon">🧩</i>Puzzle Solver</a></li>
+        <li><a href="#" class="nav-link" data-section="wumpus"><i class="nav-icon">🌍</i>Wumpus World</a></li>
+        <li><a href="#" class="nav-link" data-section="probabilistic"><i class="nav-icon">📊</i>Probabilistic AI</a></li>
+        <li class="nav-group-label">More</li>
+        <li><a href="#" class="nav-link" data-section="history"><i class="nav-icon">🕐</i>History</a></li>
+        <li><a href="#" class="nav-link" data-section="settings"><i class="nav-icon">⚙</i>Settings</a></li>
+        <li><a href="#" class="nav-link" data-section="about"><i class="nav-icon">ℹ</i>About Project</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-status">
+      <div class="status-dot online"></div>
+      <span>JARVIS Online</span>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main id="main-content">
+
+    <!-- ===================== DASHBOARD SECTION ===================== -->
+    <section id="section-dashboard" class="content-section active">
+      <div class="section-header">
+        <h1 class="section-title">Dashboard</h1>
+        <p class="section-subtitle">Welcome to JARVIS AI Control Center</p>
+      </div>
+
+      <!-- Welcome Card -->
+      <div class="welcome-card card-glass">
+        <div class="welcome-icon">🤖</div>
+        <div class="welcome-text">
+          <h2>Hello! I'm JARVIS</h2>
+          <p>Just A Rather Very Intelligent System. I'm ready to help you explore AI algorithms, solve complex problems, and demonstrate intelligent behaviours. Navigate using the sidebar to explore different modules.</p>
+        </div>
+        <button class="btn-primary" onclick="navigateTo('chat')">Start Chatting →</button>
+      </div>
+
+      <!-- Status Stat Cards -->
+      <div class="stats-grid">
+        <div class="stat-card card-glass">
+          <div class="stat-icon">🧠</div>
+          <div class="stat-value">13</div>
+          <div class="stat-label">Algorithms</div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="width:86%"></div></div>
+        </div>
+        <div class="stat-card card-glass">
+          <div class="stat-icon">📦</div>
+          <div class="stat-value">7</div>
+          <div class="stat-label">Modules</div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="width:70%"></div></div>
+        </div>
+        <div class="stat-card card-glass">
+          <div class="stat-icon">✅</div>
+          <div class="stat-value">17</div>
+          <div class="stat-label">Tests</div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="stat-card card-glass status-online">
+          <div class="stat-icon">🟢</div>
+          <div class="stat-value">Online</div>
+          <div class="stat-label">Status</div>
+          <div class="stat-bar"><div class="stat-bar-fill cyan" style="width:100%"></div></div>
+        </div>
+      </div>
+
+      <!-- Quick Action Cards -->
+      <h3 class="subsection-title">Quick Actions</h3>
+      <div class="quick-actions-grid">
+        <div class="quick-card card-glass" onclick="navigateTo('chat')">
+          <div class="quick-icon">💬</div>
+          <div class="quick-label">AI Chat</div>
+          <p class="quick-desc">Talk to JARVIS, ask questions about AI algorithms.</p>
+        </div>
+        <div class="quick-card card-glass" onclick="navigateTo('search')">
+          <div class="quick-icon">🔍</div>
+          <div class="quick-label">Search Algorithms</div>
+          <p class="quick-desc">BFS, DFS, A*, D*, Hill Climbing, Simulated Annealing.</p>
+        </div>
+        <div class="quick-card card-glass" onclick="navigateTo('puzzles')">
+          <div class="quick-icon">🧩</div>
+          <div class="quick-label">Puzzle Solver</div>
+          <p class="quick-desc">Solve the 8-Puzzle and Towers of Hanoi.</p>
+        </div>
+        <div class="quick-card card-glass" onclick="navigateTo('wumpus')">
+          <div class="quick-icon">🌍</div>
+          <div class="quick-label">Wumpus World</div>
+          <p class="quick-desc">Navigate a hazardous cave using logical inference.</p>
+        </div>
+        <div class="quick-card card-glass" onclick="navigateTo('probabilistic')">
+          <div class="quick-icon">📊</div>
+          <div class="quick-label">Probabilistic AI</div>
+          <p class="quick-desc">Bayesian Networks, EM Algorithm, Hidden Markov Models.</p>
+        </div>
+        <div class="quick-card card-glass" onclick="navigateTo('about')">
+          <div class="quick-icon">ℹ</div>
+          <div class="quick-label">About Project</div>
+          <p class="quick-desc">Learn about JARVIS AI, the team, and syllabus coverage.</p>
+        </div>
+      </div>
+
+      <!-- Algorithm Shortcuts -->
+      <h3 class="subsection-title">Algorithm Shortcuts</h3>
+      <div class="algo-shortcuts-grid">
+        <div class="algo-shortcut card-glass" onclick="navigateTo('search','bfs')">
+          <span class="algo-tag bfs">BFS</span>
+          <span>Breadth-First Search</span>
+        </div>
+        <div class="algo-shortcut card-glass" onclick="navigateTo('search','dfs')">
+          <span class="algo-tag dfs">DFS</span>
+          <span>Depth-First Search</span>
+        </div>
+        <div class="algo-shortcut card-glass" onclick="navigateTo('search','astar')">
+          <span class="algo-tag astar">A*</span>
+          <span>A* Pathfinding</span>
+        </div>
+        <div class="algo-shortcut card-glass" onclick="navigateTo('search','sa')">
+          <span class="algo-tag sa">SA</span>
+          <span>Simulated Annealing</span>
+        </div>
+        <div class="algo-shortcut card-glass" onclick="navigateTo('probabilistic','hmm')">
+          <span class="algo-tag hmm">HMM</span>
+          <span>Hidden Markov Model</span>
+        </div>
+        <div class="algo-shortcut card-glass" onclick="navigateTo('wumpus')">
+          <span class="algo-tag wumpus">🌍</span>
+          <span>Wumpus World</span>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <h3 class="subsection-title">Recent Activity</h3>
+      <div class="activity-list card-glass">
+        <div class="activity-item">
+          <div class="activity-dot cyan"></div>
+          <div class="activity-content">
+            <span class="activity-title">BFS algorithm executed</span>
+            <span class="activity-time">Just now</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot blue"></div>
+          <div class="activity-content">
+            <span class="activity-title">8-Puzzle solved with Manhattan heuristic</span>
+            <span class="activity-time">2 minutes ago</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot purple"></div>
+          <div class="activity-content">
+            <span class="activity-title">HMM Viterbi path decoded</span>
+            <span class="activity-time">5 minutes ago</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot cyan"></div>
+          <div class="activity-content">
+            <span class="activity-title">Wumpus World game started</span>
+            <span class="activity-time">10 minutes ago</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot blue"></div>
+          <div class="activity-content">
+            <span class="activity-title">EM Algorithm converged in 42 iterations</span>
+            <span class="activity-time">15 minutes ago</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CHAT SECTION ===================== -->
+    <section id="section-chat" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">AI Assistant</h1>
+        <p class="section-subtitle">Talk to JARVIS — your intelligent AI companion</p>
+      </div>
+
+      <div class="chat-container card-glass">
+        <div class="chat-header">
+          <div class="chat-avatar">J</div>
+          <div class="chat-header-info">
+            <span class="chat-name">JARVIS</span>
+            <span class="chat-status-label"><span class="status-dot online small"></span> Online &amp; Ready</span>
+          </div>
+          <button class="btn-icon" id="btn-clear-chat" title="Clear conversation">🗑</button>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+          <div class="message jarvis-message">
+            <div class="message-avatar">J</div>
+            <div class="message-bubble">
+              <p>Hello! I'm JARVIS — Just A Rather Very Intelligent System. I can help you understand AI algorithms, solve problems, and navigate through the application. What would you like to explore today?</p>
+              <span class="message-time">Just now</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typing indicator -->
+        <div class="typing-indicator" id="typing-indicator" style="display:none;">
+          <div class="message-avatar">J</div>
+          <div class="typing-bubble">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+          </div>
+        </div>
+
+        <!-- Example prompts -->
+        <div class="example-prompts" id="example-prompts">
+          <p class="prompts-label">Try asking:</p>
+          <div class="prompts-list">
+            <button class="prompt-chip" onclick="sendExamplePrompt('Explain how BFS works')">Explain BFS</button>
+            <button class="prompt-chip" onclick="sendExamplePrompt('What is the difference between A* and Dijkstra?')">A* vs Dijkstra</button>
+            <button class="prompt-chip" onclick="sendExamplePrompt('How does the Wumpus World agent reason?')">Wumpus reasoning</button>
+            <button class="prompt-chip" onclick="sendExamplePrompt('Explain Hidden Markov Models')">What is HMM?</button>
+            <button class="prompt-chip" onclick="sendExamplePrompt('Solve the 8-puzzle for me')">8-Puzzle help</button>
+            <button class="prompt-chip" onclick="sendExamplePrompt('What is simulated annealing?')">Simulated Annealing</button>
+          </div>
+        </div>
+
+        <!-- Input row -->
+        <div class="chat-input-row">
+          <input type="text" id="chat-input" class="chat-input" placeholder="Ask JARVIS anything about AI algorithms…" autocomplete="off" />
+          <button class="btn-icon-round" id="btn-mic" title="Voice input">🎤</button>
+          <button class="btn-primary" id="btn-send" onclick="sendMessage()">Send ✈</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEARCH ALGORITHMS SECTION ===================== -->
+    <section id="section-search" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">Search Algorithms</h1>
+        <p class="section-subtitle">Visualize and run classic AI search algorithms</p>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="tab-bar" id="search-tabs">
+        <button class="tab-btn active" data-tab="bfs">BFS</button>
+        <button class="tab-btn" data-tab="dfs">DFS</button>
+        <button class="tab-btn" data-tab="iddfs">IDDFS</button>
+        <button class="tab-btn" data-tab="astar">A*</button>
+        <button class="tab-btn" data-tab="dstar">D*</button>
+        <button class="tab-btn" data-tab="hillclimb">Hill Climbing</button>
+        <button class="tab-btn" data-tab="simulated">Simulated Annealing</button>
+      </div>
+
+      <!-- BFS Tab -->
+      <div class="tab-content active" id="tab-bfs">
+        <div class="algo-desc card-glass">
+          <h3>Breadth-First Search (BFS)</h3>
+          <p>BFS explores all nodes at the current depth before proceeding to nodes at the next depth level. It is complete and optimal for unweighted graphs. Time complexity: O(V+E).</p>
+        </div>
+        <div class="algo-controls-row">
+          <div class="algo-controls card-glass">
+            <div class="form-group">
+              <label>Nodes (comma-separated)</label>
+              <input type="text" id="bfs-nodes" class="ctrl-input" value="A,B,C,D,E,F,G" placeholder="A,B,C,D"/>
+            </div>
+            <div class="form-group">
+              <label>Edges (one per line: A B)</label>
+              <textarea id="bfs-edges" class="ctrl-textarea" rows="5">A B
+A C
+B D
+B E
+C F
+C G</textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group half">
+                <label>Start Node</label>
+                <select id="bfs-start" class="ctrl-select"><option>A</option></select>
+              </div>
+              <div class="form-group half">
+                <label>Goal Node</label>
+                <select id="bfs-goal" class="ctrl-select"><option>G</option></select>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="runSearchAlgo('bfs')">▶ Run BFS</button>
+              <button class="btn-secondary" onclick="resetSearchAlgo('bfs')">↺ Reset</button>
+            </div>
+          </div>
+          <div class="algo-visual card-glass">
+            <canvas id="bfs-canvas" width="400" height="300"></canvas>
+          </div>
+        </div>
+        <div class="results-panel card-glass" id="bfs-results">
+          <div class="results-row">
+            <div class="result-item">
+              <span class="result-label">Traversal Order</span>
+              <div class="result-value" id="bfs-traversal">—</div>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Path Found</span>
+              <div class="result-value" id="bfs-path">—</div>
+            </div>
+          </div>
+          <table class="steps-table" id="bfs-steps-table">
+            <thead><tr><th>Step</th><th>Current Node</th><th>Queue</th><th>Visited</th></tr></thead>
+            <tbody id="bfs-steps-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DFS Tab -->
+      <div class="tab-content" id="tab-dfs">
+        <div class="algo-desc card-glass">
+          <h3>Depth-First Search (DFS)</h3>
+          <p>DFS explores as far as possible along each branch before backtracking. Memory efficient but not guaranteed to find the shortest path. Time complexity: O(V+E).</p>
+        </div>
+        <div class="algo-controls-row">
+          <div class="algo-controls card-glass">
+            <div class="form-group">
+              <label>Nodes (comma-separated)</label>
+              <input type="text" id="dfs-nodes" class="ctrl-input" value="A,B,C,D,E,F,G" placeholder="A,B,C,D"/>
+            </div>
+            <div class="form-group">
+              <label>Edges (one per line: A B)</label>
+              <textarea id="dfs-edges" class="ctrl-textarea" rows="5">A B
+A C
+B D
+B E
+C F
+C G</textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group half">
+                <label>Start Node</label>
+                <select id="dfs-start" class="ctrl-select"><option>A</option></select>
+              </div>
+              <div class="form-group half">
+                <label>Goal Node</label>
+                <select id="dfs-goal" class="ctrl-select"><option>G</option></select>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="runSearchAlgo('dfs')">▶ Run DFS</button>
+              <button class="btn-secondary" onclick="resetSearchAlgo('dfs')">↺ Reset</button>
+            </div>
+          </div>
+          <div class="algo-visual card-glass">
+            <canvas id="dfs-canvas" width="400" height="300"></canvas>
+          </div>
+        </div>
+        <div class="results-panel card-glass" id="dfs-results">
+          <div class="results-row">
+            <div class="result-item">
+              <span class="result-label">Traversal Order</span>
+              <div class="result-value" id="dfs-traversal">—</div>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Path Found</span>
+              <div class="result-value" id="dfs-path">—</div>
+            </div>
+          </div>
+          <table class="steps-table" id="dfs-steps-table">
+            <thead><tr><th>Step</th><th>Current Node</th><th>Stack</th><th>Visited</th></tr></thead>
+            <tbody id="dfs-steps-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- IDDFS Tab -->
+      <div class="tab-content" id="tab-iddfs">
+        <div class="algo-desc card-glass">
+          <h3>Iterative Deepening DFS (IDDFS)</h3>
+          <p>IDDFS combines the space efficiency of DFS with the completeness and optimality of BFS. It performs DFS to increasing depth limits until the goal is found.</p>
+        </div>
+        <div class="algo-controls-row">
+          <div class="algo-controls card-glass">
+            <div class="form-group">
+              <label>Nodes (comma-separated)</label>
+              <input type="text" id="iddfs-nodes" class="ctrl-input" value="A,B,C,D,E,F,G" placeholder="A,B,C,D"/>
+            </div>
+            <div class="form-group">
+              <label>Edges (one per line: A B)</label>
+              <textarea id="iddfs-edges" class="ctrl-textarea" rows="5">A B
+A C
+B D
+B E
+C F
+C G</textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group half">
+                <label>Start Node</label>
+                <select id="iddfs-start" class="ctrl-select"><option>A</option></select>
+              </div>
+              <div class="form-group half">
+                <label>Goal Node</label>
+                <select id="iddfs-goal" class="ctrl-select"><option>G</option></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Max Depth</label>
+              <input type="number" id="iddfs-maxdepth" class="ctrl-input" value="10" min="1" max="50"/>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="runSearchAlgo('iddfs')">▶ Run IDDFS</button>
+              <button class="btn-secondary" onclick="resetSearchAlgo('iddfs')">↺ Reset</button>
+            </div>
+          </div>
+          <div class="algo-visual card-glass">
+            <canvas id="iddfs-canvas" width="400" height="300"></canvas>
+          </div>
+        </div>
+        <div class="results-panel card-glass" id="iddfs-results">
+          <div class="results-row">
+            <div class="result-item">
+              <span class="result-label">Path Found</span>
+              <div class="result-value" id="iddfs-path">—</div>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Depth Found</span>
+              <div class="result-value" id="iddfs-depth">—</div>
+            </div>
+          </div>
+          <table class="steps-table">
+            <thead><tr><th>Iteration</th><th>Depth Limit</th><th>Nodes Explored</th><th>Result</th></tr></thead>
+            <tbody id="iddfs-steps-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- A* Tab -->
+      <div class="tab-content" id="tab-astar">
+        <div class="algo-desc card-glass">
+          <h3>A* Search Algorithm</h3>
+          <p>A* finds the shortest path using f(n) = g(n) + h(n), where g(n) is the cost from the start and h(n) is the heuristic estimate to the goal. It is both complete and optimal when h(n) is admissible.</p>
+        </div>
+        <div class="algo-controls-row">
+          <div class="algo-controls card-glass">
+            <div class="form-group">
+              <label>Nodes (comma-separated)</label>
+              <input type="text" id="astar-nodes" class="ctrl-input" value="A,B,C,D,E,F,G" placeholder="A,B,C,D"/>
+            </div>
+            <div class="form-group">
+              <label>Edges (one per line: A B cost)</label>
+              <textarea id="astar-edges" class="ctrl-textarea" rows="5">A B 1
+A C 4
+B D 2
+B E 5
+C F 3
+D G 1
+E G 2</textarea>
+            </div>
+            <div class="form-group">
+              <label>Heuristics (node:value, comma-separated)</label>
+              <input type="text" id="astar-heuristics" class="ctrl-input" value="A:6,B:4,C:5,D:2,E:3,F:4,G:0"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group half">
+                <label>Start Node</label>
+                <select id="astar-start" class="ctrl-select"><option>A</option></select>
+              </div>
+              <div class="form-group half">
+                <label>Goal Node</label>
+                <select id="astar-goal" class="ctrl-select"><option>G</option></select>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="runSearchAlgo('astar')">▶ Run A*</button>
+              <button class="btn-secondary" onclick="resetSearchAlgo('astar')">↺ Reset</button>
+            </div>
+          </div>
+          <div class="algo-visual card-glass">
+            <canvas id="astar-canvas" width="400" height="300"></canvas>
+          </div>
+        </div>
+        <div class="results-panel card-glass" id="astar-results">
+          <div class="results-row">
+            <div class="result-item">
+              <span class="result-label">Optimal Path</span>
+              <div class="result-value" id="astar-path">—</div>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Total Cost</span>
+              <div class="result-value" id="astar-cost">—</div>
+            </div>
+          </div>
+          <table class="steps-table">
+            <thead><tr><th>Step</th><th>Node</th><th>g(n)</th><th>h(n)</th><th>f(n)</th></tr></thead>
+            <tbody id="astar-steps-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- D* Tab -->
+      <div class="tab-content" id="tab-dstar">
+        <div class="algo-desc card-glass">
+          <h3>D* (Dynamic A*) Algorithm</h3>
+          <p>D* is an incremental heuristic search algorithm that handles dynamic environments. It efficiently replans paths when obstacles are added or removed without restarting from scratch.</p>
+        </div>
+        <div class="algo-controls-row">
+          <div class="algo-controls card-glass">
+            <div class="form-group">
+              <label>Grid Size</label>
+              <input type="number" id="dstar-gridsize" class="ctrl-input" value="8" min="4" max="15"/>
+            </div>
+            <div class="form-group">
+              <label>Start (row,col)</label>
+              <input type="text" id="dstar-start" class="ctrl-input" value="0,0"/>
+            </div>
+            <div class="form-group">
+              <label>Goal (row,col)</label>
+              <input type="text" id="dstar-goal" class="ctrl-input" value="7,7"/>
+            </div>
+            <p class="hint-text">Click on the grid canvas to add/remove obstacles.</p>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="runSearchAlgo('dstar')">▶ Run D*</button>
+              <button class="btn-secondary" onclick="resetSearchAlgo('dstar')">↺ Reset</button>
+            </div>
+          </div>
+          <div class="algo-visual card-glass">
+            <canvas id="dstar-canvas" width="400" height="400"></canvas>
+          </div>
+        </div>
+        <div class="results-panel card-glass" id="dstar-results">
+          <div class="results-row">
+            <div class="result-item">
+              <span class="result-label">Path Length</span>
+              <div class="result-value" id="dstar-pathlen">—</div>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Replanning Steps</span>
+              <div class="result-value" id="dstar-replan">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hill Climbing Tab -->
+      <div class="tab-content" id="tab-hillclimb">
+        <div class="algo-desc card-glass">
+          <h3>Hill Climbing</h3>
+          <p>Hill Climbing is a local search algorithm that continuously moves in the direction of increasing value (uphill). It terminates when it reaches a peak where no neighbour has a higher value.</p>
+        </div>
+        <div class="algo-controls-row">
+          <div class="algo-controls card-glass">
+            <div class="form-group">
+              <label>Initial X</label>
+              <input type="number" id="hc-initial-x" class="ctrl-input" value="0.0" step="0.1"/>
+            </div>
+            <div class="form-group">
+              <label>Function Type</label>
+              <select id="hc-func" class="ctrl-select">
+                <option value="multimodal">Multimodal</option>
+                <option value="sinusoidal">Sinusoidal</option>
+                <option value="parabola">Parabola</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Step Size</label>
+              <input type="number" id="hc-step" class="ctrl-input" value="0.1" step="0.01"/>
+            </div>
+            <div class="form-group">
+              <label>Max Iterations</label>
+              <input type="number" id="hc-maxiter" class="ctrl-input" value="1000"/>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="runSearchAlgo('hillclimb')">▶ Run Hill Climbing</button>
+              <button class="btn-secondary" onclick="resetSearchAlgo('hillclimb')">↺ Reset</button>
+            </div>
+          </div>
+          <div class="algo-visual card-glass">
+            <canvas id="hillclimb-canvas" width="400" height="300"></canvas>
+          </div>
+        </div>
+        <div class="results-panel card-glass" id="hillclimb-results">
+          <div class="results-row">
+            <div class="result-item">
+              <span class="result-label">Best X</span>
+              <div class="result-value" id="hc-best-x">—</div>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Best Value</span>
+              <div class="result-value" id="hc-best-val">—</div>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Iterations</span>
+              <div class="result-value" id="hc-iters">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simulated Annealing Tab -->
+      <div class="tab-content" id="tab-simulated">
+        <div class="algo-desc card-glass">
+          <h3>Simulated Annealing</h3>
+          <p>Simulated Annealing is a probabilistic technique that allows occasional uphill moves to escape local optima. The probability of accepting worse solutions decreases as the "temperature" drops.</p>
+        </div>
+        <div class="algo-controls-row">
+          <div class="algo-controls card-glass">
+            <div class="form-group">
+              <label>Initial X</label>
+              <input type="number" id="sa-initial-x" class="ctrl-input" value="0.0" step="0.1"/>
+            </div>
+            <div class="form-group">
+              <label>Initial Temperature</label>
+              <input type="number" id="sa-initial-temp" class="ctrl-input" value="1000"/>
+            </div>
+            <div class="form-group">
+              <label>Cooling Rate</label>
+              <input type="number" id="sa-cooling" class="ctrl-input" value="0.995" step="0.001"/>
+            </div>
+            <div class="form-group">
+              <label>Max Iterations</label>
+              <input type="number" id="sa-maxiter" class="ctrl-input" value="1000"/>
+            </div>
+            <div class="form-group">
+              <label>Function Type</label>
+              <select id="sa-func" class="ctrl-select">
+                <option value="multimodal">Multimodal</option>
+                <option value="sinusoidal">Sinusoidal</option>
+                <option value="parabola">Parabola</option>
+              </select>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="runSearchAlgo('simulated')">▶ Run SA</button>
+              <button class="btn-secondary" onclick="resetSearchAlgo('simulated')">↺ Reset</button>
+            </div>
+          </div>
+          <div class="algo-visual card-glass">
+            <canvas id="sa-canvas" width="400" height="300"></canvas>
+          </div>
+        </div>
+        <div class="results-panel card-glass" id="sa-results">
+          <div class="results-row">
+            <div class="result-item">
+              <span class="result-label">Best X</span>
+              <div class="result-value" id="sa-best-x">—</div>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Best Value</span>
+              <div class="result-value" id="sa-best-val">—</div>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Iterations</span>
+              <div class="result-value" id="sa-iters">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PUZZLE SECTION ===================== -->
+    <section id="section-puzzles" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">Puzzle Solver</h1>
+        <p class="section-subtitle">Solve classic AI puzzles with step-by-step visualization</p>
+      </div>
+
+      <div class="tab-bar" id="puzzle-tabs">
+        <button class="tab-btn active" data-tab="eightpuzzle">8-Puzzle</button>
+        <button class="tab-btn" data-tab="hanoi">Towers of Hanoi</button>
+      </div>
+
+      <!-- 8-Puzzle Tab -->
+      <div class="tab-content active" id="tab-eightpuzzle">
+        <div class="algo-desc card-glass">
+          <h3>8-Puzzle Solver</h3>
+          <p>The 8-puzzle consists of a 3×3 grid with tiles numbered 1–8 and a blank. The goal is to slide tiles into the goal configuration. Solved using A* with Manhattan or Misplaced Tiles heuristic.</p>
+        </div>
+        <div class="puzzle-layout">
+          <div class="puzzle-left">
+            <div class="puzzle-controls card-glass">
+              <div class="form-group">
+                <label>Heuristic</label>
+                <select id="puzzle-heuristic" class="ctrl-select">
+                  <option value="manhattan">Manhattan Distance</option>
+                  <option value="misplaced">Misplaced Tiles</option>
+                </select>
+              </div>
+              <div class="btn-row">
+                <button class="btn-primary" onclick="solvePuzzle()">▶ Solve</button>
+                <button class="btn-secondary" onclick="randomizePuzzle()">🔀 Random</button>
+                <button class="btn-secondary" onclick="resetPuzzle()">↺ Reset</button>
+              </div>
+            </div>
+            <div class="puzzle-stats card-glass">
+              <div class="stat-row"><span>Moves:</span><span id="puzzle-moves">0</span></div>
+              <div class="stat-row"><span>States Explored:</span><span id="puzzle-states">0</span></div>
+              <div class="stat-row"><span>Time Taken:</span><span id="puzzle-time">0ms</span></div>
+              <div class="stat-row"><span>Solvable:</span><span id="puzzle-solvable">—</span></div>
+              <div class="stat-row"><span>Status:</span><span id="puzzle-status">Ready</span></div>
+            </div>
+          </div>
+          <div class="puzzle-center">
+            <div class="puzzle-label">Initial State</div>
+            <div class="puzzle-grid" id="puzzle-grid">
+              <div class="puzzle-tile" data-index="0">1</div>
+              <div class="puzzle-tile" data-index="1">2</div>
+              <div class="puzzle-tile" data-index="2">3</div>
+              <div class="puzzle-tile" data-index="3">4</div>
+              <div class="puzzle-tile" data-index="4">5</div>
+              <div class="puzzle-tile" data-index="5">6</div>
+              <div class="puzzle-tile" data-index="6">7</div>
+              <div class="puzzle-tile" data-index="7">8</div>
+              <div class="puzzle-tile blank" data-index="8"></div>
+            </div>
+            <div class="puzzle-label">Goal State</div>
+            <div class="puzzle-grid goal-grid">
+              <div class="puzzle-tile">1</div>
+              <div class="puzzle-tile">2</div>
+              <div class="puzzle-tile">3</div>
+              <div class="puzzle-tile">4</div>
+              <div class="puzzle-tile">5</div>
+              <div class="puzzle-tile">6</div>
+              <div class="puzzle-tile">7</div>
+              <div class="puzzle-tile">8</div>
+              <div class="puzzle-tile blank"></div>
+            </div>
+          </div>
+          <div class="puzzle-right">
+            <div class="solution-steps card-glass">
+              <h4>Solution Steps</h4>
+              <div class="steps-scroll" id="puzzle-solution-steps">
+                <p class="hint-text">Run solver to see step-by-step solution.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hanoi Tab -->
+      <div class="tab-content" id="tab-hanoi">
+        <div class="algo-desc card-glass">
+          <h3>Towers of Hanoi</h3>
+          <p>The Towers of Hanoi is a classic recursive problem: move n disks from peg A to peg C using peg B as auxiliary, never placing a larger disk on a smaller one. Minimum moves = 2ⁿ − 1.</p>
+        </div>
+        <div class="hanoi-controls card-glass">
+          <div class="form-row">
+            <div class="form-group half">
+              <label>Number of Disks</label>
+              <input type="number" id="hanoi-disks" class="ctrl-input" value="3" min="1" max="8"/>
+            </div>
+            <div class="form-group half">
+              <label>Speed (ms/move)</label>
+              <input type="number" id="hanoi-speed" class="ctrl-input" value="500" min="100" max="2000" step="100"/>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-primary" id="hanoi-start-btn" onclick="startHanoi()">▶ Start</button>
+            <button class="btn-secondary" id="hanoi-pause-btn" onclick="pauseHanoi()" disabled>⏸ Pause</button>
+            <button class="btn-secondary" onclick="resetHanoi()">↺ Reset</button>
+          </div>
+        </div>
+        <div class="hanoi-stats-row">
+          <div class="hanoi-stat card-glass"><span class="stat-label">Move</span><span class="stat-value" id="hanoi-move-count">0</span></div>
+          <div class="hanoi-stat card-glass"><span class="stat-label">Total Moves</span><span class="stat-value" id="hanoi-total-moves">7</span></div>
+          <div class="hanoi-stat card-glass"><span class="stat-label">Status</span><span class="stat-value" id="hanoi-status">Ready</span></div>
+        </div>
+        <div class="hanoi-visual card-glass" id="hanoi-visual">
+          <div class="hanoi-pegs-area">
+            <div class="hanoi-peg-col" id="peg-a">
+              <div class="peg-disks" id="peg-a-disks"></div>
+              <div class="peg-rod"></div>
+              <div class="peg-base"></div>
+              <div class="peg-label">A (Source)</div>
+            </div>
+            <div class="hanoi-peg-col" id="peg-b">
+              <div class="peg-disks" id="peg-b-disks"></div>
+              <div class="peg-rod"></div>
+              <div class="peg-base"></div>
+              <div class="peg-label">B (Auxiliary)</div>
+            </div>
+            <div class="hanoi-peg-col" id="peg-c">
+              <div class="peg-disks" id="peg-c-disks"></div>
+              <div class="peg-rod"></div>
+              <div class="peg-base"></div>
+              <div class="peg-label">C (Destination)</div>
+            </div>
+          </div>
+        </div>
+        <div class="hanoi-log card-glass">
+          <h4>Move Log</h4>
+          <div class="hanoi-log-scroll" id="hanoi-log-scroll">
+            <p class="hint-text">Start the simulation to see move log.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WUMPUS WORLD SECTION ===================== -->
+    <section id="section-wumpus" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">Wumpus World</h1>
+        <p class="section-subtitle">Navigate a hazardous cave using logical inference</p>
+      </div>
+
+      <div class="wumpus-layout">
+        <!-- Left: Grid + Controls -->
+        <div class="wumpus-left">
+          <div class="wumpus-grid-wrapper card-glass">
+            <div class="wumpus-grid" id="wumpus-grid">
+              <!-- 4x4 grid cells generated by JS -->
+            </div>
+          </div>
+          <div class="wumpus-controls card-glass">
+            <div class="move-pad">
+              <button class="btn-move" onclick="wumpusMove('up')">↑</button>
+              <div class="move-row">
+                <button class="btn-move" onclick="wumpusMove('left')">←</button>
+                <span class="move-center">🤖</span>
+                <button class="btn-move" onclick="wumpusMove('right')">→</button>
+              </div>
+              <button class="btn-move" onclick="wumpusMove('down')">↓</button>
+            </div>
+            <div class="wumpus-actions">
+              <button class="btn-action warn" onclick="wumpusShoot()">🏹 Shoot</button>
+              <button class="btn-action" onclick="wumpusGrab()">💰 Grab Gold</button>
+              <button class="btn-action" onclick="wumpusClimb()">🪜 Climb Out</button>
+              <button class="btn-action danger" onclick="newWumpusGame()">🔄 New Game</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Percepts + Knowledge Base + Status -->
+        <div class="wumpus-right">
+          <div class="percept-panel card-glass">
+            <h4>Current Percepts</h4>
+            <div class="percepts-grid">
+              <div class="percept-item" id="percept-stench">
+                <span class="percept-icon">🦨</span>
+                <span class="percept-label">Stench</span>
+                <span class="percept-value" id="pv-stench">No</span>
+              </div>
+              <div class="percept-item" id="percept-breeze">
+                <span class="percept-icon">💨</span>
+                <span class="percept-label">Breeze</span>
+                <span class="percept-value" id="pv-breeze">No</span>
+              </div>
+              <div class="percept-item" id="percept-glitter">
+                <span class="percept-icon">✨</span>
+                <span class="percept-label">Glitter</span>
+                <span class="percept-value" id="pv-glitter">No</span>
+              </div>
+              <div class="percept-item" id="percept-bump">
+                <span class="percept-icon">💥</span>
+                <span class="percept-label">Bump</span>
+                <span class="percept-value" id="pv-bump">No</span>
+              </div>
+              <div class="percept-item" id="percept-scream">
+                <span class="percept-icon">😱</span>
+                <span class="percept-label">Scream</span>
+                <span class="percept-value" id="pv-scream">No</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="knowledge-panel card-glass">
+            <h4>Knowledge Base</h4>
+            <div class="kb-content" id="kb-content">
+              <div class="kb-item">Agent at [1,1]. No percepts. Safe to explore adjacent cells.</div>
+            </div>
+          </div>
+
+          <div class="game-status-panel card-glass">
+            <h4>Game Status</h4>
+            <div class="status-items">
+              <div class="status-row-item"><span>Score:</span><span id="wumpus-score">0</span></div>
+              <div class="status-row-item"><span>Arrows:</span><span id="wumpus-arrows">1</span></div>
+              <div class="status-row-item"><span>Gold:</span><span id="wumpus-gold">Not collected</span></div>
+              <div class="status-row-item"><span>Wumpus:</span><span id="wumpus-alive">Alive</span></div>
+              <div class="status-row-item"><span>Status:</span><span id="wumpus-game-status">Playing</span></div>
+            </div>
+            <div class="game-message" id="wumpus-message">Game started. Find the gold!</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROBABILISTIC AI SECTION ===================== -->
+    <section id="section-probabilistic" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">Probabilistic AI</h1>
+        <p class="section-subtitle">Bayesian Networks, EM Algorithm, and Hidden Markov Models</p>
+      </div>
+
+      <div class="tab-bar" id="prob-tabs">
+        <button class="tab-btn active" data-tab="bayesian">Bayesian Network</button>
+        <button class="tab-btn" data-tab="em">EM Algorithm</button>
+        <button class="tab-btn" data-tab="hmm">HMM</button>
+      </div>
+
+      <!-- Bayesian Tab -->
+      <div class="tab-content active" id="tab-bayesian">
+        <div class="algo-desc card-glass">
+          <h3>Bayesian Network</h3>
+          <p>A Bayesian Network is a probabilistic graphical model representing conditional dependencies. This example uses a Burglary-Alarm network with nodes: Burglary, Earthquake, Alarm, JohnCalls, MaryCalls.</p>
+        </div>
+        <div class="bayesian-layout">
+          <div class="bayesian-evidence card-glass">
+            <h4>Evidence</h4>
+            <div class="evidence-list">
+              <label class="evidence-item">
+                <input type="checkbox" id="ev-burglary"/> Burglary = True
+              </label>
+              <label class="evidence-item">
+                <input type="checkbox" id="ev-earthquake"/> Earthquake = True
+              </label>
+              <label class="evidence-item">
+                <input type="checkbox" id="ev-alarm"/> Alarm = True
+              </label>
+              <label class="evidence-item">
+                <input type="checkbox" id="ev-johncalls"/> JohnCalls = True
+              </label>
+              <label class="evidence-item">
+                <input type="checkbox" id="ev-marycalls"/> MaryCalls = True
+              </label>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="runBayesian()">▶ Compute</button>
+              <button class="btn-secondary" onclick="resetBayesian()">↺ Reset</button>
+            </div>
+          </div>
+          <div class="bayesian-results card-glass">
+            <h4>Posterior Probabilities</h4>
+            <div class="prob-bars" id="bayesian-prob-bars">
+              <div class="prob-bar-item">
+                <span class="prob-label">P(Burglary)</span>
+                <div class="prob-bar-track"><div class="prob-bar-fill" id="pb-burglary" style="width:1%"></div></div>
+                <span class="prob-val" id="pv-burglary-val">0.001</span>
+              </div>
+              <div class="prob-bar-item">
+                <span class="prob-label">P(Earthquake)</span>
+                <div class="prob-bar-track"><div class="prob-bar-fill blue" id="pb-earthquake" style="width:2%"></div></div>
+                <span class="prob-val" id="pv-earthquake-val">0.002</span>
+              </div>
+              <div class="prob-bar-item">
+                <span class="prob-label">P(Alarm)</span>
+                <div class="prob-bar-track"><div class="prob-bar-fill purple" id="pb-alarm" style="width:0.2%"></div></div>
+                <span class="prob-val" id="pv-alarm-val">0.002</span>
+              </div>
+              <div class="prob-bar-item">
+                <span class="prob-label">P(JohnCalls)</span>
+                <div class="prob-bar-track"><div class="prob-bar-fill cyan" id="pb-john" style="width:5%"></div></div>
+                <span class="prob-val" id="pv-john-val">0.052</span>
+              </div>
+              <div class="prob-bar-item">
+                <span class="prob-label">P(MaryCalls)</span>
+                <div class="prob-bar-track"><div class="prob-bar-fill" id="pb-mary" style="width:1%"></div></div>
+                <span class="prob-val" id="pv-mary-val">0.012</span>
+              </div>
+            </div>
+            <div class="bayesian-explanation card-glass" id="bayesian-explanation">
+              <p>Select evidence variables and click Compute to see posterior probabilities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EM Algorithm Tab -->
+      <div class="tab-content" id="tab-em">
+        <div class="algo-desc card-glass">
+          <h3>Expectation-Maximization (EM) Algorithm</h3>
+          <p>EM is an iterative optimization algorithm for finding maximum likelihood estimates in models with latent variables. Used here for Gaussian Mixture Model clustering.</p>
+        </div>
+        <div class="algo-controls-row">
+          <div class="algo-controls card-glass">
+            <div class="form-group">
+              <label>Number of Samples</label>
+              <input type="number" id="em-samples" class="ctrl-input" value="200" min="50" max="1000"/>
+            </div>
+            <div class="form-group">
+              <label>Number of Components</label>
+              <input type="number" id="em-components" class="ctrl-input" value="3" min="2" max="6"/>
+            </div>
+            <div class="form-group">
+              <label>Max Iterations</label>
+              <input type="number" id="em-maxiter" class="ctrl-input" value="100" min="10" max="500"/>
+            </div>
+            <div class="form-group">
+              <label>Random Seed</label>
+              <input type="number" id="em-seed" class="ctrl-input" value="42"/>
+            </div>
+            <div class="btn-row">
+              <button class="btn-secondary" onclick="generateEMData()">🔀 Generate Data</button>
+              <button class="btn-primary" onclick="runEM()">▶ Run EM</button>
+            </div>
+            <div class="em-stats card-glass" id="em-stats">
+              <div class="stat-row"><span>Iterations:</span><span id="em-iter-count">—</span></div>
+              <div class="stat-row"><span>Converged:</span><span id="em-converged">—</span></div>
+              <div class="stat-row"><span>Log-Likelihood:</span><span id="em-loglik">—</span></div>
+            </div>
+          </div>
+          <div class="algo-visual card-glass">
+            <canvas id="em-canvas" width="400" height="300"></canvas>
+          </div>
+        </div>
+        <div class="em-convergence card-glass">
+          <h4>Log-Likelihood Convergence</h4>
+          <canvas id="em-convergence-chart" width="800" height="200"></canvas>
+        </div>
+        <div class="em-clusters card-glass" id="em-clusters">
+          <h4>Cluster Summary</h4>
+          <div id="em-cluster-list"></div>
+        </div>
+      </div>
+
+      <!-- HMM Tab -->
+      <div class="tab-content" id="tab-hmm">
+        <div class="algo-desc card-glass">
+          <h3>Hidden Markov Model (HMM)</h3>
+          <p>An HMM models a system assumed to be a Markov process with hidden states. This example uses the classic "Umbrella World" with states {Rainy, Sunny} and observations {Walk, Shop, Clean}.</p>
+        </div>
+        <div class="hmm-layout">
+          <div class="hmm-controls card-glass">
+            <h4>Observation Sequence</h4>
+            <div class="hmm-obs-choices">
+              <label class="obs-label"><input type="checkbox" class="hmm-obs" value="Walk" checked/> Walk</label>
+              <label class="obs-label"><input type="checkbox" class="hmm-obs" value="Shop" checked/> Shop</label>
+              <label class="obs-label"><input type="checkbox" class="hmm-obs" value="Clean"/> Clean</label>
+            </div>
+            <p class="hint-text">Select the observed activities in order. Checked = include in sequence.</p>
+            <div class="hmm-obs-preview">
+              <span class="result-label">Sequence: </span>
+              <span id="hmm-sequence-preview">Walk → Shop</span>
+            </div>
+            <div class="form-group">
+              <label>Algorithm</label>
+              <select id="hmm-algo" class="ctrl-select">
+                <option value="both">Both (Forward + Viterbi)</option>
+                <option value="forward">Forward Algorithm only</option>
+                <option value="viterbi">Viterbi only</option>
+              </select>
+            </div>
+            <div class="btn-row">
+              <button class="btn-primary" onclick="runHMM()">▶ Run HMM</button>
+              <button class="btn-secondary" onclick="resetHMM()">↺ Reset</button>
+            </div>
+          </div>
+          <div class="hmm-results card-glass" id="hmm-results">
+            <h4>Results</h4>
+            <div class="hmm-result-item">
+              <span class="result-label">Forward Probability:</span>
+              <span class="result-value" id="hmm-forward-prob">—</span>
+            </div>
+            <div class="hmm-result-item">
+              <span class="result-label">Viterbi Path:</span>
+              <span class="result-value" id="hmm-viterbi-path">—</span>
+            </div>
+            <div class="hmm-result-item">
+              <span class="result-label">Viterbi Probability:</span>
+              <span class="result-value" id="hmm-viterbi-prob">—</span>
+            </div>
+            <div class="hmm-state-probs" id="hmm-state-probs"></div>
+          </div>
+        </div>
+        <div class="hmm-diagram card-glass">
+          <h4>HMM Structure (Umbrella World)</h4>
+          <div class="hmm-network-visual">
+            <div class="hmm-states-row">
+              <div class="hmm-state-node sunny">Sunny<br/><small>π=0.5</small></div>
+              <div class="hmm-arrow">⇆</div>
+              <div class="hmm-state-node rainy">Rainy<br/><small>π=0.5</small></div>
+            </div>
+            <div class="hmm-obs-row">
+              <div class="hmm-obs-node">Walk<br/><small>S:0.6 R:0.1</small></div>
+              <div class="hmm-obs-node">Shop<br/><small>S:0.3 R:0.4</small></div>
+              <div class="hmm-obs-node">Clean<br/><small>S:0.1 R:0.5</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HISTORY SECTION ===================== -->
+    <section id="section-history" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">History</h1>
+        <p class="section-subtitle">View your past algorithm runs and chat conversations</p>
+      </div>
+      <div class="history-controls card-glass">
+        <div class="form-row">
+          <input type="text" id="history-search" class="ctrl-input" placeholder="Search history…"/>
+          <select id="history-filter" class="ctrl-select">
+            <option value="all">All Activities</option>
+            <option value="chat">Chat</option>
+            <option value="search">Search Algorithms</option>
+            <option value="puzzle">Puzzles</option>
+            <option value="wumpus">Wumpus World</option>
+            <option value="probabilistic">Probabilistic AI</option>
+          </select>
+          <button class="btn-secondary" onclick="clearHistory()">🗑 Clear All</button>
+        </div>
+      </div>
+      <div class="history-list" id="history-list">
+        <div class="history-item card-glass">
+          <div class="history-icon">🔍</div>
+          <div class="history-content">
+            <div class="history-title">BFS executed on 7-node graph</div>
+            <div class="history-meta">Search Algorithms · A → G · Path found in 4 steps</div>
+            <div class="history-time">Today, 3:15 PM</div>
+          </div>
+        </div>
+        <div class="history-item card-glass">
+          <div class="history-icon">🧩</div>
+          <div class="history-content">
+            <div class="history-title">8-Puzzle solved with Manhattan heuristic</div>
+            <div class="history-meta">Puzzle Solver · 23 moves · 847 states explored</div>
+            <div class="history-time">Today, 2:48 PM</div>
+          </div>
+        </div>
+        <div class="history-item card-glass">
+          <div class="history-icon">📊</div>
+          <div class="history-content">
+            <div class="history-title">HMM Viterbi decoded: Walk → Shop</div>
+            <div class="history-meta">Probabilistic AI · States: Sunny → Rainy</div>
+            <div class="history-time">Today, 2:30 PM</div>
+          </div>
+        </div>
+        <div class="history-item card-glass">
+          <div class="history-icon">💬</div>
+          <div class="history-content">
+            <div class="history-title">Chat: "Explain A* search algorithm"</div>
+            <div class="history-meta">AI Assistant · 5 messages exchanged</div>
+            <div class="history-time">Today, 2:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SETTINGS SECTION ===================== -->
+    <section id="section-settings" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">Settings</h1>
+        <p class="section-subtitle">Configure JARVIS AI preferences</p>
+      </div>
+
+      <div class="settings-grid">
+        <div class="settings-card card-glass">
+          <h3>Interface</h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Theme</span>
+              <span class="setting-desc">Choose the application color theme</span>
+            </div>
+            <select id="theme-select" class="ctrl-select small">
+              <option value="dark">Dark (Default)</option>
+              <option value="darker">Ultra Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Animation Speed</span>
+              <span class="setting-desc">Controls visualization animation speed</span>
+            </div>
+            <select id="anim-speed-select" class="ctrl-select small">
+              <option value="slow">Slow</option>
+              <option value="normal" selected>Normal</option>
+              <option value="fast">Fast</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-card card-glass">
+          <h3>Voice Assistant</h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Voice Input</span>
+              <span class="setting-desc">Enable microphone for voice commands</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="voice-toggle" checked/>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Text-to-Speech</span>
+              <span class="setting-desc">JARVIS speaks responses aloud</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="tts-toggle"/>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Voice Language</span>
+              <span class="setting-desc">Language for speech recognition</span>
+            </div>
+            <select id="voice-lang-select" class="ctrl-select small">
+              <option value="en-US">English (US)</option>
+              <option value="en-GB">English (UK)</option>
+              <option value="hi-IN">Hindi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-card card-glass">
+          <h3>API Configuration</h3>
+          <div class="form-group">
+            <label>Backend API Endpoint</label>
+            <input type="text" id="api-endpoint" class="ctrl-input" value="http://localhost:8000"/>
+          </div>
+          <div class="form-group">
+            <label>API Timeout (ms)</label>
+            <input type="number" id="api-timeout" class="ctrl-input" value="30000"/>
+          </div>
+          <div class="btn-row">
+            <button class="btn-primary" onclick="testAPIConnection()">🔌 Test Connection</button>
+            <button class="btn-secondary" onclick="saveSettings()">💾 Save</button>
+          </div>
+          <div class="api-status" id="api-status"></div>
+        </div>
+
+        <div class="settings-card card-glass">
+          <h3>Data & Privacy</h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Save History</span>
+              <span class="setting-desc">Keep a local log of algorithm runs</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="history-toggle" checked/>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="btn-row" style="margin-top:1rem;">
+            <button class="btn-danger" onclick="clearAllHistory()">🗑 Clear All History</button>
+            <button class="btn-secondary" onclick="exportData()">📤 Export Data</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT SECTION ===================== -->
+    <section id="section-about" class="content-section">
+      <div class="section-header">
+        <h1 class="section-title">About Project</h1>
+        <p class="section-subtitle">JARVIS AI — Just A Rather Very Intelligent System</p>
+      </div>
+
+      <div class="about-hero card-glass">
+        <div class="about-logo">J</div>
+        <div class="about-hero-text">
+          <h2>JARVIS AI</h2>
+          <p class="tagline">Just A Rather Very Intelligent System</p>
+          <p>An interactive educational platform built to demonstrate classical Artificial Intelligence algorithms through live, visual, and interactive experiences. From search to probabilistic reasoning, JARVIS covers the full AI curriculum.</p>
+          <div class="version-badge">Version 1.0.0</div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Syllabus Coverage</h3>
+      <div class="about-table-wrapper card-glass">
+        <table class="about-table">
+          <thead>
+            <tr>
+              <th>Module</th>
+              <th>Algorithm / Topic</th>
+              <th>Section</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Search</td><td>Breadth-First Search (BFS)</td><td>Search Algorithms</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Search</td><td>Depth-First Search (DFS)</td><td>Search Algorithms</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Search</td><td>Iterative Deepening DFS (IDDFS)</td><td>Search Algorithms</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Heuristic Search</td><td>A* Algorithm</td><td>Search Algorithms</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Dynamic Search</td><td>D* (Dynamic A*)</td><td>Search Algorithms</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Local Search</td><td>Hill Climbing</td><td>Search Algorithms</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Local Search</td><td>Simulated Annealing</td><td>Search Algorithms</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Puzzles</td><td>8-Puzzle (A* solving)</td><td>Puzzle Solver</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Puzzles</td><td>Towers of Hanoi (Recursive)</td><td>Puzzle Solver</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Knowledge</td><td>Wumpus World (Logical Inference)</td><td>Wumpus World</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Probabilistic</td><td>Bayesian Network</td><td>Probabilistic AI</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Probabilistic</td><td>EM Algorithm (GMM)</td><td>Probabilistic AI</td><td class="status-badge ok">✅ Implemented</td></tr>
+            <tr><td>Probabilistic</td><td>Hidden Markov Model (HMM)</td><td>Probabilistic AI</td><td class="status-badge ok">✅ Implemented</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subsection-title">Technology Stack</h3>
+      <div class="tech-stack-grid">
+        <div class="tech-card card-glass">
+          <div class="tech-icon">🐍</div>
+          <div class="tech-name">Python</div>
+          <div class="tech-desc">Backend algorithms and AI logic</div>
+        </div>
+        <div class="tech-card card-glass">
+          <div class="tech-icon">⚡</div>
+          <div class="tech-name">FastAPI</div>
+          <div class="tech-desc">High-performance REST API</div>
+        </div>
+        <div class="tech-card card-glass">
+          <div class="tech-icon">🌐</div>
+          <div class="tech-name">HTML/CSS/JS</div>
+          <div class="tech-desc">Interactive frontend UI</div>
+        </div>
+        <div class="tech-card card-glass">
+          <div class="tech-icon">📊</div>
+          <div class="tech-name">Chart.js</div>
+          <div class="tech-desc">Data visualization charts</div>
+        </div>
+        <div class="tech-card card-glass">
+          <div class="tech-icon">🧮</div>
+          <div class="tech-name">NumPy / SciPy</div>
+          <div class="tech-desc">Numerical computing</div>
+        </div>
+        <div class="tech-card card-glass">
+          <div class="tech-icon">🤖</div>
+          <div class="tech-name">scikit-learn</div>
+          <div class="tech-desc">Machine learning algorithms</div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Team</h3>
+      <div class="team-grid">
+        <div class="team-card card-glass">
+          <div class="team-avatar">👨‍💻</div>
+          <div class="team-name">Lead Developer</div>
+          <div class="team-role">Full-Stack AI Engineer</div>
+        </div>
+        <div class="team-card card-glass">
+          <div class="team-avatar">👩‍🔬</div>
+          <div class="team-name">AI Algorithms</div>
+          <div class="team-role">Search &amp; Probabilistic AI</div>
+        </div>
+        <div class="team-card card-glass">
+          <div class="team-avatar">🎨</div>
+          <div class="team-name">UI/UX Designer</div>
+          <div class="team-role">Frontend &amp; Visualization</div>
+        </div>
+      </div>
+
+      <div class="about-footer card-glass">
+        <p>JARVIS AI is an academic mini-project developed as part of the Artificial Intelligence curriculum. All algorithms are implemented from scratch for educational purposes.</p>
+        <p class="about-license">© 2024 JARVIS AI Project. MIT License.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/chat.js"></script>
+  <script src="/js/algorithms.js"></script>
+  <script src="/js/visualizations.js"></script>
+  <script src="/js/puzzles.js"></script>
+  <script src="/js/wumpus.js"></script>
+  <script src="/js/probabilistic.js"></script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+/* ============================================================
+   JARVIS AI — animations.css
+   All keyframes and animation utilities
+   ============================================================ */
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
+/* Pulse — gentle scale pulse */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.06); opacity: 0.85; }
+}
+
+/* Glow — cyan glow oscillation */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 212, 255, 0.2), 0 0 20px rgba(0, 212, 255, 0.1); }
+  50%       { box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.25), 0 0 60px rgba(0, 212, 255, 0.1); }
+}
+
+/* Logo glow — for the J logo */
+@keyframes logoGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 0 40px rgba(0, 212, 255, 0.15); }
+  50%       { box-shadow: 0 0 30px rgba(0, 212, 255, 0.7), 0 0 60px rgba(0, 212, 255, 0.3), 0 0 80px rgba(0, 102, 255, 0.15); }
+}
+
+/* SlideIn — slide up and fade in */
+@keyframes slideIn {
+  from { transform: translateY(14px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* SlideInLeft — slide from left */
+@keyframes slideInLeft {
+  from { transform: translateX(-20px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* SlideInRight — slide from right */
+@keyframes slideInRight {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* FadeIn — simple opacity fade */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* FadeInScale — fade in with slight scale */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Bounce — vertical bounce */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+  50%       { transform: translateY(-6px); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+
+/* Spin — 360° rotation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Blink — opacity blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Typewriter cursor blink */
+@keyframes typewriter {
+  0%, 49% { border-right-color: var(--accent-cyan); }
+  50%, 100%{ border-right-color: transparent; }
+}
+
+/* StatusPulse — the sidebar online dot */
+@keyframes statusPulse {
+  0%, 100% {
+    box-shadow: 0 0 4px rgba(0, 255, 136, 0.6);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 255, 136, 1), 0 0 20px rgba(0, 255, 136, 0.4);
+    opacity: 0.85;
+  }
+}
+
+/* TypingBounce — the three chat dots */
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+  30%            { transform: translateY(-6px); opacity: 1; }
+}
+
+/* BarFill — probability bar width from 0 */
+@keyframes barFill {
+  from { width: 0%; }
+}
+
+/* CardEntrance — staggered card appearance */
+@keyframes cardEntrance {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* Shimmer — loading shimmer effect */
+@keyframes shimmer {
+  0%   { background-position: -800px 0; }
+  100% { background-position:  800px 0; }
+}
+
+/* Ripple — button click ripple */
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* WumpusCell — cell discovered animation */
+@keyframes cellReveal {
+  from { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* PuzzleTileMove — sliding tile animation */
+@keyframes tileSlide {
+  from { transform: scale(0.9); opacity: 0.5; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* HanoiDiskMove — disk moving animation */
+@keyframes diskFly {
+  0%   { transform: translateY(0) scaleX(1); }
+  50%  { transform: translateY(-40px) scaleX(1.05); }
+  100% { transform: translateY(0) scaleX(1); }
+}
+
+/* ============================================================
+   ANIMATION UTILITY CLASSES
+   ============================================================ */
+
+.anim-pulse        { animation: pulse 2s ease-in-out infinite; }
+.anim-glow         { animation: glow 2.5s ease-in-out infinite; }
+.anim-spin         { animation: spin 1s linear infinite; }
+.anim-bounce       { animation: bounce 1.2s ease-in-out infinite; }
+.anim-blink        { animation: blink 1s step-end infinite; }
+.anim-fadein       { animation: fadeIn 0.3s ease forwards; }
+.anim-slidein      { animation: slideIn 0.35s ease forwards; }
+.anim-fadeinscale  { animation: fadeInScale 0.3s ease forwards; }
+
+/* Entrance delays for staggered grids */
+.anim-delay-1  { animation-delay: 0.05s; }
+.anim-delay-2  { animation-delay: 0.10s; }
+.anim-delay-3  { animation-delay: 0.15s; }
+.anim-delay-4  { animation-delay: 0.20s; }
+.anim-delay-5  { animation-delay: 0.25s; }
+.anim-delay-6  { animation-delay: 0.30s; }
+
+/* Transition utilities */
+.trans-fast   { transition: all 0.15s ease; }
+.trans-normal { transition: all 0.25s ease; }
+.trans-slow   { transition: all 0.4s ease; }
+
+/* ============================================================
+   TYPING INDICATOR
+   ============================================================ */
+/* Defined in style.css using @keyframes typingBounce */
+/* Extra override for visibility */
+#typing-indicator .typing-dot {
+  animation: typingBounce 1.4s ease-in-out infinite;
+}
+#typing-indicator .typing-dot:nth-child(1) { animation-delay: 0.0s; }
+#typing-indicator .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+#typing-indicator .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ============================================================
+   BUTTON HOVER GLOW
+   ============================================================ */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: inherit;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.btn-primary:active::after {
+  transform: translate(-50%, -50%) scale(2);
+  opacity: 0;
+  transition: transform 0s, opacity 0s;
+}
+
+/* ============================================================
+   CARD ENTRANCE ANIMATIONS
+   ============================================================ */
+
+/* Stat cards, quick-action cards, algo shortcut cards */
+.stat-card,
+.quick-card,
+.algo-shortcut,
+.tech-card,
+.team-card {
+  animation: cardEntrance 0.4s ease both;
+}
+
+/* Stagger grid children */
+.stats-grid > .stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stats-grid > .stat-card:nth-child(2) { animation-delay: 0.10s; }
+.stats-grid > .stat-card:nth-child(3) { animation-delay: 0.15s; }
+.stats-grid > .stat-card:nth-child(4) { animation-delay: 0.20s; }
+
+.quick-actions-grid > .quick-card:nth-child(1) { animation-delay: 0.06s; }
+.quick-actions-grid > .quick-card:nth-child(2) { animation-delay: 0.12s; }
+.quick-actions-grid > .quick-card:nth-child(3) { animation-delay: 0.18s; }
+.quick-actions-grid > .quick-card:nth-child(4) { animation-delay: 0.24s; }
+.quick-actions-grid > .quick-card:nth-child(5) { animation-delay: 0.30s; }
+.quick-actions-grid > .quick-card:nth-child(6) { animation-delay: 0.36s; }
+
+/* ============================================================
+   CONTENT SECTION TRANSITION
+   ============================================================ */
+.content-section.active {
+  animation: fadeInScale 0.3s ease forwards;
+}
+
+/* ============================================================
+   PROBABILITY BARS — animated fill on appearance
+   ============================================================ */
+.prob-bar-fill {
+  animation: barFill 0.9s ease forwards;
+}
+
+/* ============================================================
+   WUMPUS CELL REVEAL
+   ============================================================ */
+.wumpus-cell.revealed {
+  animation: cellReveal 0.3s ease forwards;
+}
+
+/* ============================================================
+   PUZZLE TILE
+   ============================================================ */
+.puzzle-tile.moving {
+  animation: tileSlide 0.2s ease forwards;
+}
+
+/* ============================================================
+   HANOI DISK MOVE
+   ============================================================ */
+.hanoi-disk.moving {
+  animation: diskFly 0.5s ease-in-out forwards;
+}
+
+/* ============================================================
+   SHIMMER PLACEHOLDER (loading skeletons)
+   ============================================================ */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 0%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.03) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* ============================================================
+   NAV LINK ACTIVE INDICATOR SLIDE
+   ============================================================ */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+/* ============================================================
+   ALGO TAB BUTTON — active underline animation
+   ============================================================ */
+.tab-btn {
+  position: relative;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: var(--accent-cyan);
+  border-radius: 1px;
+  transition: transform 0.25s ease;
+}
+
+.tab-btn.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ============================================================
+   MESSAGE BUBBLE ENTRANCE
+   ============================================================ */
+.message.jarvis-message { animation: slideInLeft 0.3s ease; }
+.message.user-message   { animation: slideInRight 0.3s ease; }
+
+/* ============================================================
+   WUMPUS MOVE PAD BUTTONS
+   ============================================================ */
+.btn-move {
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+.btn-move:active { transform: scale(0.9); }
+
+/* ============================================================
+   SETTINGS TOGGLE TRANSITION
+   ============================================================ */
+.toggle-slider,
+.toggle-slider::before {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   ABOUT LOGO GLOW
+   ============================================================ */
+.about-logo {
+  animation: logoGlow 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   QUICK CARD HOVER LIFT
+   ============================================================ */
+.quick-card,
+.algo-shortcut,
+.tech-card,
+.team-card {
+  transition: transform 0.25s ease, border-color 0.25s ease,
+              box-shadow 0.25s ease, background 0.25s ease;
+}
+
+/* ============================================================
+   NAV LINK TRANSITION
+   ============================================================ */
+.nav-link {
+  transition: color 0.2s ease, background 0.2s ease,
+              transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* ============================================================
+   CHAT INPUT FOCUS GLOW
+   ============================================================ */
+.chat-input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ============================================================
+   PROB BAR TRANSITION
+   ============================================================ */
+.prob-bar-fill {
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   HISTORY ITEM HOVER
+   ============================================================ */
+.history-item {
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* ============================================================
+   WUMPUS PERCEPT ITEM ACTIVE STATE
+   ============================================================ */
+.percept-item {
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ============================================================
+   SECTION ACTIVE FADE
+   ============================================================ */
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.content-section.active {
+  animation: sectionFadeIn 0.3s ease forwards;
+}
