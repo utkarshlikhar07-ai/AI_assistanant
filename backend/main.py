@@ -24,9 +24,9 @@ load_dotenv()
 
 # Import routers
 try:
-    from backend.api import assistant_router, algorithms_router, puzzles_router, probabilistic_router
+    from backend.api import assistant_router, algorithms_router, puzzles_router, probabilistic_router, llm_router
 except ImportError:
-    from api import assistant_router, algorithms_router, puzzles_router, probabilistic_router
+    from api import assistant_router, algorithms_router, puzzles_router, probabilistic_router, llm_router
 
 
 @asynccontextmanager
@@ -58,6 +58,7 @@ app.include_router(assistant_router, prefix="/api/assistant", tags=["assistant"]
 app.include_router(algorithms_router, prefix="/api/algorithms", tags=["algorithms"])
 app.include_router(puzzles_router, prefix="/api/puzzles", tags=["puzzles"])
 app.include_router(probabilistic_router, prefix="/api/probabilistic", tags=["probabilistic"])
+app.include_router(llm_router, prefix="/api/llm", tags=["llm"])
 
 
 @app.get("/api/health")

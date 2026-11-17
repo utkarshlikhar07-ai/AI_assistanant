@@ -30,9 +30,16 @@ try:
 except ImportError:
     probabilistic_router = APIRouter()
 
+# ─── LLM Router ───────────────────────────────────────────────────────────────
+try:
+    from backend.api.llm import router as llm_router
+except ImportError:
+    llm_router = APIRouter()
+
 __all__ = [
     "assistant_router",
     "algorithms_router",
     "puzzles_router",
     "probabilistic_router",
+    "llm_router",
 ]

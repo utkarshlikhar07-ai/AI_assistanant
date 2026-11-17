@@ -3,13 +3,14 @@
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-009688.svg?style=flat&logo=FastAPI&logoColor=white)](https://fastapi.tiangolo.com)
 [![Python](https://img.shields.io/badge/Python-3.9+-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-3.5%20Flash-4285F4.svg?style=flat&logo=google&logoColor=white)](https://ai.google.dev/)
 [![Uvicorn](https://img.shields.io/badge/Uvicorn-0.24+-499848.svg?style=flat&logo=gunicorn&logoColor=white)](https://www.uvicorn.org/)
 [![Pydantic](https://img.shields.io/badge/Pydantic-v2-E92063.svg?style=flat&logo=pydantic&logoColor=white)](https://docs.pydantic.dev/)
-[![Pytest](https://img.shields.io/badge/Pytest-58%20Passed-brightgreen.svg?style=flat&logo=pytest&logoColor=white)](https://pytest.org/)
+[![Pytest](https://img.shields.io/badge/Pytest-68%20Passed-brightgreen.svg?style=flat&logo=pytest&logoColor=white)](https://pytest.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Complete%20%26%20Operational-success.svg)]()
 
-> **JARVIS AI** is a fully functional, offline-capable Intelligent Personal Assistant tightly integrated with an interactive Artificial Intelligence Algorithms Laboratory. Designed to bridge foundational computer science algorithms with modern assistant software architecture, JARVIS serves as the central intelligence orchestrator capable of conversational dialogue, mathematical evaluation, voice input/output, and direct tool-based invocation of 13 university-level AI algorithms and classical problem solvers.
+> **JARVIS AI** is a fully functional, dual-mode Intelligent Personal Assistant powered by Google's Gemini Large Language Model (`google-genai` SDK) and tightly integrated with an interactive Artificial Intelligence Algorithms Laboratory. Designed to bridge foundational computer science algorithms with modern generative AI architecture, JARVIS serves as the central intelligence orchestrator capable of conversational dialogue, autonomous tool-calling execution of 13 university-level AI algorithms, and step-by-step problem explanations. If Gemini is offline or unconfigured, JARVIS seamlessly falls back to a 100% local deterministic intent engine without disruption.
 
 ---
 
@@ -36,7 +37,8 @@
    - [Module 12: Expectation-Maximization (EM) Algorithm](#module-12--expectation-maximization-algorithm)
    - [Module 13: Hidden Markov Model (HMM)](#module-13--hidden-markov-model)
 8. [Virtual Assistant Functionality](#8-virtual-assistant-functionality)
-   - [Intent Recognition & Slot Filling](#intent-recognition--slot-filling)
+   - [Google Gemini Large Language Model Integration](#google-gemini-large-language-model-integration)
+   - [Local Intent Recognition & Slot Filling](#local-intent-recognition--slot-filling-offline-fallback-engine)
    - [Tool Dispatching & Execution Engine](#tool-dispatching--execution-engine)
    - [Voice Processing (Speech-to-Text & Text-to-Speech)](#voice-processing)
 9. [Installation Instructions for Windows](#9-installation-instructions-for-windows)
@@ -104,6 +106,7 @@ The application operates **100% offline** without mandatory third-party LLM API 
 | Technology | Version | Purpose |
 |---|---|---|
 | **Python** | 3.9 – 3.14+ | Core programming language for all algorithms and backend services |
+| **Google GenAI** | >= 3.0.0 | Official Google Gemini LLM SDK (`google-genai`) with autonomous tool calling |
 | **FastAPI** | >= 0.104.1 | High-speed asynchronous REST API framework |
 | **Uvicorn** | >= 0.24.0 | ASGI production web server supporting asynchronous workers and auto-reload |
 | **Pydantic** | >= 2.5.0 | Data validation, request payload parsing, and response serialization |
@@ -111,6 +114,7 @@ The application operates **100% offline** without mandatory third-party LLM API 
 | **SciPy** | >= 1.11.0 | Scientific mathematical utilities and statistical density calculations |
 | **Scikit-Learn** | >= 1.3.0 | Supplementary machine learning utilities |
 | **NetworkX** | >= 3.2.0 | Graph data structure representations and topological validation |
+| **Python-Dotenv**| >= 1.0.0 | Secure environment variable management for API keys (.env) |
 | **Pytest** | >= 7.4.0 | Unit, integration, and regression testing framework |
 | **HTTPX** | >= 0.25.0 | High-performance asynchronous HTTP client for integration testing |
 
@@ -203,6 +207,7 @@ e:\mini_project\
 │   │   ├── __init__.py                # Router aggregation and fallback exports
 │   │   ├── algorithms.py              # Endpoints for search & optimization algorithms
 │   │   ├── assistant.py               # Endpoints for chat assistant & system capabilities
+│   │   ├── llm.py                     # Endpoints for Google Gemini status, config & test
 │   │   ├── probabilistic.py           # Endpoints for Bayesian, EM, and HMM modules
 │   │   └── puzzles.py                 # Endpoints for 8-Puzzle, Hanoi, and Wumpus World
 │   │
@@ -218,7 +223,7 @@ e:\mini_project\
 │   ├── probabilistic\                 # Probabilistic & Uncertainty AI Modules
 │   │   ├── __init__.py                # Probabilistic package exports
 │   │   ├── bayesian_network.py        # Exact Bayesian inference by joint enumeration
-│   │   ├── em_algorithm.py            # Gaussian Mixture Model Expectation-Maximization
+│   │   └── em_algorithm.py            # Gaussian Mixture Model Expectation-Maximization
 │   │   └── hmm.py                     # Hidden Markov Model (Forward & Viterbi algorithms)
 │   │
 │   ├── problems\                      # Classical Problem Solvers & Environments
@@ -229,7 +234,8 @@ e:\mini_project\
 │   │
 │   └── services\                      # Orchestration & Integration Services
 │       ├── __init__.py                # Services package initializer
-│       └── assistant_service.py       # Central orchestrator connecting chat to AI tools
+│       ├── assistant_service.py       # Central orchestrator connecting chat to AI tools
+│       └── llm_service.py             # Google Gemini LLM SDK client & 13 algorithm tools
 │
 ├── frontend\                          # Web Client Interface (Single-Page App)
 │   ├── index.html                     # Main dashboard, HUD cards, visualizer layouts
@@ -242,23 +248,27 @@ e:\mini_project\
 │       ├── algorithms.js              # Controllers for search and optimization tabs
 │       ├── app.js                     # Global SPA navigation, toasts, and API helper
 │       ├── chat.js                    # Chat UI, Web Speech recognition, and synthesis
+│       ├── gemini.js                  # Gemini LLM status telemetry & config modal
 │       ├── probabilistic.js           # Bayesian bars, EM curves, and HMM sequences
 │       ├── puzzles.js                 # 8-Puzzle grid and Towers of Hanoi visualizers
 │       ├── visualizations.js          # Canvas 2D graph renderer and Chart.js plotter
 │       └── wumpus.js                  # Wumpus World 4x4 grid and movement controls
 │
-├── tests\                             # Automated Pytest Suite (58 Tests)
+├── tests\                             # Automated Pytest Suite (68 Tests)
 │   ├── __init__.py                    # Test package initializer
 │   ├── test_api.py                    # End-to-end FastAPI endpoint integration tests
+│   ├── test_llm.py                    # Google Gemini LLM tool & fallback test suite
 │   ├── test_probabilistic.py          # Math verification for Bayesian, EM, and HMM
 │   ├── test_puzzles.py                # Tests for 8-Puzzle, Hanoi, and Wumpus World
 │   └── test_search.py                 # Tests for BFS, DFS, IDDFS, A*, D*, HC, SA
 │
+├── .env                               # Local environment configuration (Git-ignored)
 ├── .env.example                       # Template for environment variables
 ├── .gitignore                         # Git ignore configuration (caches, venvs, envs)
 ├── PROJECT_REPORT.md                  # Comprehensive academic project report
 ├── README.md                          # Primary project documentation
 ├── requirements.txt                   # Production Python package dependencies
+├── setup.bat                          # One-time automated environment setup script
 └── start.bat                          # One-click Windows initialization and startup script
 ```
 
@@ -373,6 +383,46 @@ Supported Intents:
 
 **Entity Extraction**: Automatically extracts single-letter graph node names (`from A to G`), numeric parameters (`3 disks`, `10 iterations`), and target algorithm types from natural language input.
 
+### Google Gemini Large Language Model Integration
+JARVIS AI is powered by Google's Gemini Large Language Model via the modern Python SDK (`google-genai`). The assistant combines high-level reasoning and conversational intelligence with deterministic execution of the 13 lab algorithms:
+
+- **Official Modern SDK**: Uses `from google import genai` and `from google.genai import types` (version `google-genai>=3.0.0`), strictly avoiding deprecated packages.
+- **Autonomous Tool / Function Calling**: 13 real Python algorithm tool declarations are registered with the Gemini client:
+  1. `execute_bfs(start_node, goal_node)` — Invokes `backend.algorithms.bfs.bfs`
+  2. `execute_dfs(start_node, goal_node)` — Invokes `backend.algorithms.dfs.dfs`
+  3. `execute_iddfs(start_node, goal_node, max_depth)` — Invokes `backend.algorithms.iddfs.iddfs`
+  4. `execute_astar(start_node, goal_node)` — Invokes `backend.algorithms.astar.astar`
+  5. `execute_dstar(grid_size, start_x, start_y, goal_x, goal_y)` — Invokes `backend.algorithms.dstar.dstar_plan`
+  6. `execute_hill_climbing(initial_x, function_type, max_iterations)` — Invokes `backend.algorithms.hill_climbing.hill_climbing`
+  7. `execute_simulated_annealing(initial_x, initial_temp, cooling_rate, max_iterations)` — Invokes `backend.algorithms.simulated_annealing.simulated_annealing`
+  8. `execute_eight_puzzle(heuristic)` — Invokes `backend.problems.eight_puzzle.solve_puzzle`
+  9. `execute_towers_of_hanoi(num_disks)` — Invokes `backend.problems.towers_of_hanoi.hanoi`
+  10. `execute_wumpus_world(action)` — Invokes `backend.problems.wumpus_world.WumpusWorld`
+  11. `execute_bayesian_network(cloudy, rain, sprinkler)` — Invokes `backend.probabilistic.bayesian_network.compute_inference`
+  12. `execute_expectation_maximization(n_samples, n_components, max_iterations)` — Invokes `backend.probabilistic.em_algorithm.run_em`
+  13. `execute_hidden_markov_model(observations)` — Invokes `backend.probabilistic.hmm.run_hmm`
+
+- **Zero-Fabrication Guarantee**: Gemini never fakes or hallucinates algorithm results. When requested, Gemini invokes the verified Python tool, inspects the returned mathematical output, explains the traversal steps to the user, and sends the structured data to the frontend for live Canvas rendering.
+- **Dual-Engine Robust Fallback**:
+  - **Online Mode (`llm_powered: true`)**: Gemini delivers contextual dialogue, multi-turn conversation memory, and automatic algorithm invocation. Chat bubbles display a cyan `✨ Gemini AI` badge.
+  - **Offline Fallback Mode (`llm_powered: false`)**: If the API key is missing, network is disconnected, or Gemini is rate-limited, JARVIS automatically engages the local deterministic regex and pattern-matching intent engine. No crashes, no degraded core functionality.
+- **Secure Key Management**:
+  - API keys are stored server-side in `.env` (strictly Git-ignored).
+  - API status endpoints (`GET /api/llm/status`) return masked keys (e.g., `AQ.Ab8...4CVw`) and never transmit the raw secret to browser JavaScript.
+  - Users can configure their API key anytime via the in-app Glassmorphism modal or the Settings view, complete with a live "Test Connection" button.
+
+### Local Intent Recognition & Slot Filling (Offline Fallback Engine)
+When operating offline, the local intent engine in [`backend/core/intent_recognition.py`](file:///e:/mini_project/backend/core/intent_recognition.py) parses user queries into structured intents:
+1. `GREETING` / `FAREWELL` — Conversational pleasantries.
+2. `BFS_REQUEST`, `DFS_REQUEST`, `IDDFS_REQUEST` — Uninformed graph searches.
+3. `ASTAR_REQUEST`, `DSTAR_REQUEST` — Heuristic and dynamic replanning requests.
+4. `HILL_CLIMBING_REQUEST`, `SIMULATED_ANNEALING_REQUEST` — Continuous function optimization.
+5. `PUZZLE_8_REQUEST`, `HANOI_REQUEST`, `WUMPUS_REQUEST` — Classic problem solving.
+6. `BAYESIAN_REQUEST`, `EM_REQUEST`, `HMM_REQUEST` — Probabilistic reasoning.
+7. `HELP` — System capability discovery.
+
+**Entity Extraction**: Automatically extracts single-letter graph node names (`from A to G`), numeric parameters (`3 disks`, `10 iterations`), and target algorithm types from natural language input.
+
 ### Tool Dispatching & Execution Engine
 Implemented in [`backend/services/assistant_service.py`](file:///e:/mini_project/backend/services/assistant_service.py), the assistant service coordinates:
 - Intent parsing and entity extraction.
@@ -401,17 +451,20 @@ Implemented in [`backend/services/assistant_service.py`](file:///e:/mini_project
    cd e:\mini_project
    ```
 
-2. **Verify Python is accessible**:
+2. **Automated Setup (Recommended)**:
+   Run the included setup script:
    ```cmd
-   python --version
+   setup.bat
    ```
+   This will verify Python, initialize a clean virtual environment, upgrade pip, install all dependencies from `requirements.txt`, and generate your `.env` configuration template.
 
-3. **Install Dependencies**:
-   Install all required packages directly:
-   ```cmd
-   pip install -r requirements.txt
+3. **Configure Google Gemini API Key**:
+   Open `.env` in any text editor and insert your Gemini API key:
+   ```env
+   GEMINI_API_KEY=your_actual_gemini_api_key_here
+   GEMINI_MODEL=gemini-3.5-flash
    ```
-   *(Or allow `start.bat` to automatically verify dependencies for you on first launch).*
+   *(You can obtain a free Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey). If left unconfigured, JARVIS runs in local offline fallback mode).*
 
 ---
 
@@ -421,7 +474,8 @@ All dependencies are defined in [`requirements.txt`](file:///e:/mini_project/req
 
 | Package | Version Constraint | Role & Justification |
 |---|---|---|
-| `fastapi` | `>=0.104.1` | Asynchronous web framework hosting all 18+ REST endpoints |
+| `google-genai` | `>=3.0.0` | Official modern Google Gemini LLM SDK with function calling |
+| `fastapi` | `>=0.104.1` | Asynchronous web framework hosting all 21+ REST endpoints |
 | `uvicorn[standard]` | `>=0.24.0` | Production ASGI web server running the event loop |
 | `pydantic` | `>=2.5.0` | Strict schema validation for all API inputs and outputs |
 | `numpy` | `>=1.26.0` | Matrix mathematics for GMM, HMM, and function optimization |
@@ -445,7 +499,7 @@ Double-click [`start.bat`](file:///e:/mini_project/start.bat) in File Explorer, 
 cd e:\mini_project
 start.bat
 ```
-`start.bat` will verify Python, detect existing dependencies, set up a virtual environment if needed, and start the server.
+`start.bat` will verify Python, verify dependencies (including `google-genai`), activate the virtual environment, and launch the server.
 
 ### Method 2: Manual Terminal Execution
 ```cmd
@@ -457,6 +511,7 @@ Once running, access the application at:
 - **Application Dashboard:** `http://127.0.0.1:8000`
 - **Interactive OpenAPI Documentation:** `http://127.0.0.1:8000/docs`
 - **Health Check Endpoint:** `http://127.0.0.1:8000/api/health`
+- **Gemini Status Endpoint:** `http://127.0.0.1:8000/api/llm/status`
 
 ---
 
@@ -469,6 +524,8 @@ The application features a responsive Sci-Fi HUD design:
 
 ### 2. Conversational Assistant (`/section-chat`)
 - Conversational chat interface with message bubbles, speech synthesis toggle, microphone voice input button, and prompt chips (*"Explain BFS"*, *"Solve the 8-puzzle"*, *"How does Wumpus World work?"*).
+- **Gemini Status Pill**: Real-time indicator displaying active Gemini LLM status, model identifier, and one-click access to the API configuration modal.
+- **LLM Badges**: Distinguishes between generative AI reasoning (`✨ Gemini AI`) and local rule responses (`⚙ Rule Engine`).
 - Displays inline algorithm result cards directly within chat bubbles when algorithms are triggered.
 
 ### 3. Search Algorithms Laboratory (`/section-search`)
@@ -500,7 +557,16 @@ cd e:\mini_project
 python -m pytest tests/ -v
 ```
 
-### Test Breakdown (58 Passed)
+### Test Breakdown (68 Passed)
+- **`tests/test_llm.py` (10 Tests)**:
+  - LLM service initialization and model alias resolution (`gemini-flash-latest` → `gemini-3.5-flash`).
+  - Secure API key masking (ensures raw keys never leak to frontend).
+  - Conversation history pruning and role mapping (`user` / `model`).
+  - Direct execution of algorithm tool dispatchers (BFS, 8-Puzzle, Hanoi, Bayesian Network).
+  - LLM status and validation endpoints (`GET /api/llm/status`, `POST /api/llm/configure`).
+  - Mocked connection testing (`POST /api/llm/test-connection`).
+  - Graceful fallback to deterministic rule engine when Gemini is offline.
+  - Successful LLM chat response and `llm_powered: true` attribution.
 - **`tests/test_search.py` (19 Tests)**:
   - BFS path optimality and reachability.
   - DFS traversal order and cycle avoidance.
@@ -509,6 +575,18 @@ python -m pytest tests/ -v
   - D\* Lite obstacle avoidance and replanning.
   - Hill Climbing local maxima detection.
   - Simulated Annealing temperature descent and convergence.
+- **`tests/test_puzzles.py` (12 Tests)**:
+  - 8-Puzzle solvability detection via inversion parity.
+  - 8-Puzzle A\* solver path verification.
+  - Towers of Hanoi $2^n-1$ mathematical invariant.
+  - Wumpus World hazard placement, percept generation, and gold collection.
+- **`tests/test_probabilistic.py` (10 Tests)**:
+  - Bayesian Network exact probability axioms ($\sum P = 1.0$).
+  - EM algorithm convergence and mixture weight normalization.
+  - HMM Forward algorithm probability bounds ($0 < P \le 1$).
+  - HMM Viterbi most-likely state sequence decoding.
+- **`tests/test_api.py` (17 Tests)**:
+  - HTTP status codes, JSON response formatting, and schema validation across all assistant, algorithm, puzzle, and probabilistic endpoints.
 - **`tests/test_puzzles.py` (12 Tests)**:
   - 8-Puzzle solvability detection via inversion parity.
   - 8-Puzzle A\* solver path verification.

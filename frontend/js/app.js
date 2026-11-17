@@ -626,10 +626,16 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(res => {
             updateBackendStatus(res.status === 'ok');
             console.log('JARVIS backend status:', res);
+            if (typeof checkGeminiStatus === 'function') {
+                checkGeminiStatus();
+            }
         })
         .catch(err => {
             updateBackendStatus(false);
             console.warn('Backend not reachable on initial startup:', err.message);
+            if (typeof checkGeminiStatus === 'function') {
+                checkGeminiStatus();
+            }
         });
 
     renderActivities();

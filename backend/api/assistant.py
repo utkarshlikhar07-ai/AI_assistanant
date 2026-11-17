@@ -26,6 +26,7 @@ async def chat(request: AssistantRequest):
         data=result.get("data"),
         navigate_to=result.get("navigate_to"),
         success=result.get("success", True),
+        llm_powered=result.get("llm_powered", False),
     )
 
 

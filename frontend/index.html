@@ -206,6 +206,11 @@
             <span class="chat-name">JARVIS</span>
             <span class="chat-status-label"><span class="status-dot online small"></span> Online &amp; Ready</span>
           </div>
+          <div class="gemini-status-pill offline" id="gemini-status-pill" onclick="openGeminiModal()" title="Gemini LLM Status - Click to configure">
+            <span class="status-dot offline small" id="gemini-pill-dot"></span>
+            <span id="gemini-pill-text"><strong>Gemini:</strong> Checking...</span>
+            <span class="gemini-pill-icon">⚙</span>
+          </div>
           <button class="btn-icon" id="btn-clear-chat" title="Clear conversation">🗑</button>
         </div>
 
@@ -1233,6 +1238,45 @@ E G 2</textarea>
           <div class="api-status" id="api-status"></div>
         </div>
 
+        <!-- Google Gemini LLM Settings Card -->
+        <div class="settings-card card-glass">
+          <div class="card-header-with-badge">
+            <h3>Google Gemini LLM</h3>
+            <span class="badge badge-accent">AI Core</span>
+          </div>
+          <p class="settings-card-desc">Power JARVIS with Google Gemini Large Language Model for deep natural language understanding and intelligent tool calling.</p>
+          
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Gemini Status</span>
+              <span class="setting-desc" id="settings-gemini-status-banner"><span class="badge badge-warning">● Checking</span></span>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 12px;">
+            <label for="settings-gemini-key">Gemini API Key</label>
+            <div class="input-with-button">
+              <input type="password" id="settings-gemini-key" class="ctrl-input" placeholder="Enter your Gemini API key (AQ...)" />
+              <button type="button" class="btn-icon" onclick="toggleKeyVisibility('settings-gemini-key', this)" title="Show/Hide Key">👁</button>
+            </div>
+            <span class="form-help-text">Keys are stored securely in <code>.env</code> on the server. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="link-accent">Get an API key at Google AI Studio &nearr;</a></span>
+          </div>
+
+          <div class="form-group">
+            <label for="settings-gemini-model">Gemini Model</label>
+            <select id="settings-gemini-model" class="ctrl-select">
+              <option value="gemini-3.5-flash">gemini-3.5-flash (Recommended)</option>
+              <option value="gemini-3.8-flash">gemini-3.8-flash</option>
+            </select>
+          </div>
+
+          <div class="btn-row" style="margin-top: 16px;">
+            <button class="btn-secondary" onclick="testGeminiConnection('settings-gemini-key', 'settings-gemini-model', 'settings-gemini-result', this)">⚡ Test Connection</button>
+            <button class="btn-primary" onclick="saveGeminiConfiguration('settings-gemini-key', 'settings-gemini-model', 'settings-gemini-result', this)">💾 Save &amp; Apply</button>
+          </div>
+          <div id="settings-gemini-result" class="test-result-box" style="display: none; margin-top: 12px;"></div>
+        </div>
+
         <div class="settings-card card-glass">
           <h3>Data & Privacy</h3>
           <div class="setting-row">
@@ -1360,7 +1404,68 @@ E G 2</textarea>
 
   </main>
 
+  <!-- ===================== GEMINI CONFIGURATION MODAL ===================== -->
+  <div id="gemini-modal" class="modal-overlay" onclick="if(event.target === this) closeGeminiModal()">
+    <div class="modal-card card-glass">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="modal-icon">✨</div>
+          <div>
+            <h2 class="modal-title">Google Gemini LLM Engine</h2>
+            <p class="modal-subtitle">Configure conversational AI reasoning and model parameters</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeGeminiModal()" title="Close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div id="gemini-modal-status-banner" class="gemini-status-banner banner-warning">
+          <div class="banner-icon">⚡</div>
+          <div class="banner-content">
+            <span class="banner-title">Checking connection status...</span>
+            <span class="banner-sub">Please wait</span>
+          </div>
+        </div>
+
+        <p class="modal-description">
+          Connecting Google Gemini enables JARVIS to converse fluidly, reason about problems, and autonomously execute and explain Python algorithm implementations.
+        </p>
+
+        <div class="form-group">
+          <label for="gemini-modal-key">Google Gemini API Key</label>
+          <div class="input-with-button">
+            <input type="password" id="gemini-modal-key" class="ctrl-input" placeholder="Paste your API key here (e.g. AQ...)" autocomplete="off" />
+            <button type="button" class="btn-icon" onclick="toggleKeyVisibility('gemini-modal-key', this)" title="Show/Hide Key">👁</button>
+          </div>
+          <span class="form-help-text">
+            Never shared or logged. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" class="link-accent">Get a free Gemini API key from Google AI Studio &nearr;</a>
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="gemini-modal-model">Active Gemini Model</label>
+          <select id="gemini-modal-model" class="ctrl-select">
+            <option value="gemini-3.5-flash">gemini-3.5-flash (Fast &amp; Accurate &bull; Recommended)</option>
+            <option value="gemini-3.8-flash">gemini-3.8-flash (High Intelligence)</option>
+          </select>
+          <span class="form-help-text">Both models support automatic tool calling across all 13 laboratory algorithms.</span>
+        </div>
+
+        <div id="gemini-modal-result" class="test-result-box" style="display:none;"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="testGeminiConnection('gemini-modal-key', 'gemini-modal-model', 'gemini-modal-result', this)">⚡ Test Connection</button>
+        <div class="modal-footer-right">
+          <button class="btn-ghost" onclick="closeGeminiModal()">Close</button>
+          <button class="btn-primary" onclick="saveGeminiConfiguration('gemini-modal-key', 'gemini-modal-model', 'gemini-modal-result', this)">💾 Save &amp; Activate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="/js/app.js"></script>
+  <script src="/js/gemini.js"></script>
   <script src="/js/chat.js"></script>
   <script src="/js/algorithms.js"></script>
   <script src="/js/visualizations.js"></script>

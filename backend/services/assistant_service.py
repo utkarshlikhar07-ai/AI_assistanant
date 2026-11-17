@@ -11,6 +11,7 @@ from backend.core.intent_recognition import (
     SIMULATED_ANNEALING_REQUEST, EM_REQUEST, HELP,
 )
 from backend.core.response_engine import generate_response
+from backend.services.llm_service import llm_service
 
 # ─── Navigation Mapping ──────────────────────────────────────────────────────
 
@@ -73,6 +74,8 @@ def _quick_optimization(entities: dict) -> dict | None:
 async def process_message(message: str, history: list) -> dict:
     """
     Process a user message and return a structured JARVIS response.
+    Prioritizes Google Gemini LLM with registered tool-calling when configured.
+    Falls back gracefully to deterministic offline intent recognition if Gemini is unavailable.
 
     Parameters
     ----------
@@ -90,16 +93,29 @@ async def process_message(message: str, history: list) -> dict:
             "data": dict | None,
             "navigate_to": str | None,
             "success": bool,
+            "llm_powered": bool,
         }
     """
+    # ─── 1. Attempt Google Gemini LLM Processing ─────────────────────────────
+    if llm_service.is_configured():
+        try:
+            llm_result = await llm_service.chat(message, history)
+            if llm_result.get("success"):
+                llm_result["llm_powered"] = True
+                return llm_result
+            # If LLM returned a soft failure or error, fall through to deterministic offline mode
+        except Exception:
+            pass  # Fall through to deterministic offline mode
+
+    # ─── 2. Deterministic Offline Fallback Engine ────────────────────────────
     try:
-        # 1. Recognise intent and extract entities
+        # Recognise intent and extract entities
         recognition = recognize_intent(message)
         intent: str = recognition["intent"]
         confidence: float = recognition["confidence"]
         entities: dict = recognition["entities"]
 
-        # 2. Gather supplemental data where we can compute it quickly
+        # Gather supplemental data where we can compute it quickly
         data: dict | None = None
 
         if intent == HANOI_REQUEST:
@@ -114,10 +130,10 @@ async def process_message(message: str, history: list) -> dict:
             data = {}
         data["confidence"] = confidence
 
-        # 3. Generate response text
+        # Generate response text
         response_text = generate_response(intent, entities, data)
 
-        # 4. Determine navigation target
+        # Determine navigation target
         navigate_to: str | None = NAVIGATE_TO_MAP.get(intent)
 
         return {
@@ -126,6 +142,7 @@ async def process_message(message: str, history: list) -> dict:
             "data": data,
             "navigate_to": navigate_to,
             "success": True,
+            "llm_powered": False,
         }
 
     except Exception as exc:  # pylint: disable=broad-except
@@ -138,4 +155,5 @@ async def process_message(message: str, history: list) -> dict:
             "data": None,
             "navigate_to": None,
             "success": False,
+            "llm_powered": False,
         }

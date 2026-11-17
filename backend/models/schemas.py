@@ -140,6 +140,7 @@ class AssistantResponse(BaseModel):
     data: Optional[dict] = None
     navigate_to: Optional[str] = None
     success: bool = True
+    llm_powered: Optional[bool] = False
 
 
 # ─── Probabilistic ────────────────────────────────────────────────────────────
@@ -203,3 +204,36 @@ class IDDFSResponse(BaseModel):
     nodes_explored: int
     message: str
     success: bool
+
+
+# ─── LLM / Gemini ─────────────────────────────────────────────────────────────
+
+class LLMStatusResponse(BaseModel):
+    enabled: bool
+    configured: bool
+    active_model: str
+    masked_key: str
+    available_models: list[str]
+
+
+class LLMConfigureRequest(BaseModel):
+    api_key: str
+    model: Optional[str] = None
+
+
+class LLMConfigureResponse(BaseModel):
+    success: bool
+    message: str
+    active_model: Optional[str] = None
+    masked_key: Optional[str] = None
+
+
+class LLMTestRequest(BaseModel):
+    api_key: Optional[str] = None
+    model: Optional[str] = None
+
+
+class LLMTestResponse(BaseModel):
+    success: bool
+    message: str
+    model: Optional[str] = None

@@ -32,7 +32,7 @@ if %errorlevel% neq 0 (
 echo [1/3] Python environment detected.
 
 REM 2. Check if required packages are already available in current Python
-%PY_CMD% -c "import fastapi, uvicorn, pydantic, numpy" >nul 2>&1
+%PY_CMD% -c "import fastapi, uvicorn, pydantic, numpy, google.genai" >nul 2>&1
 if %errorlevel% equ 0 (
     echo [2/3] Core dependencies verified.
     goto :run_server
@@ -40,7 +40,7 @@ if %errorlevel% equ 0 (
 
 REM If not in current environment, check/use virtual environment
 if exist "venv\Scripts\python.exe" (
-    venv\Scripts\python.exe -c "import fastapi, uvicorn, pydantic, numpy" >nul 2>&1
+    venv\Scripts\python.exe -c "import fastapi, uvicorn, pydantic, numpy, google.genai" >nul 2>&1
     if %errorlevel% equ 0 (
         echo [2/3] Virtual environment with dependencies found. Activating...
         call venv\Scripts\activate.bat
